@@ -38,7 +38,7 @@ public class Smotor extends Subsystem {
 	public void resetEncoderCount(){
 		sEncoder.reset();
 	}
-	public double getEncoderRate(){//this method returns somrthing so we define it as double, if void it would not return anything
+	public double getEncoderRate(){//this method returns something so we define it as double, if void it would not return anything
 		return sEncoder.getRate();
 	}
 	public double getEncoderRPS(){//rps is getERate/(100 counts/rev) //getERate is counts/sec
@@ -51,7 +51,7 @@ public class Smotor extends Subsystem {
 		Smotor.set(angle);
 	}
 	public double getPotAngle(){
-		return (180-pot.getAverageVoltage()*72);
+		return (pot.getAverageVoltage()*72-180);
 	}
 ///
     public void initDefaultCommand() {

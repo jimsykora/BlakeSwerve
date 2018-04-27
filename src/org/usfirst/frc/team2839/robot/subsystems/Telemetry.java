@@ -22,9 +22,9 @@ public class Telemetry extends Subsystem {
 		SmartDashboard.putNumber("Twist", Robot.oi.joystick.getTwist()*180);
 		SmartDashboard.putNumber("Throttle", Robot.oi.joystick.getThrottle()*180);
 		SmartDashboard.putNumber("Direction", Robot.oi.joystick.getDirectionDegrees());
-		SmartDashboard.putNumber("JS delta", ( Robot.oi.joystick.getTwist()+Robot.oi.joystick.getThrottle() )*180  );
-		SmartDashboard.putNumber("Raw pot angle", 180-Robot.sMotor.pot.getAverageVoltage()*72);
-		SmartDashboard.putNumber("Angle delta", Robot.oi.joystick.getThrottle()*180-(180-Robot.sMotor.pot.getAverageVoltage()*72));
+		SmartDashboard.putNumber("Magnitude", Robot.oi.joystick.getMagnitude());
+		SmartDashboard.putNumber("Raw pot angle", Robot.sMotor.getPotAngle());
+		SmartDashboard.putNumber("Angle delta", Robot.oi.joystick.getDirectionDegrees()-Robot.sMotor.getPotAngle());
 		//SmartDashboard.putNumber("ArcTangent", Math.atan(RobotPreferences.wheelbase()/RobotPreferences.treadwidth())*57.296);
 	}
 

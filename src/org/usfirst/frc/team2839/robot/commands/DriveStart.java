@@ -30,26 +30,19 @@ public class DriveStart extends Command {
     	Robot.mMotorPID.setRawTolerance(1.0);  //(RobotPreferences.driveTolerance());
     	Robot.mMotorPID.enable();
     	Robot.sMotorPID.setSetpoint(angle);
-    	Robot.sMotorPID.setRawTolerance(1.0);  //(RobotPreferences.driveTolerance());
+    	Robot.sMotorPID.setRawTolerance(1.0);  //(RobotPreferences.steerTolerance());
     	Robot.sMotorPID.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//speed = Robot.oi.joystick.getMagnitude()*100.0/5.5*1.414; // *(encoder counts/rev)/(gear reduction)*1.414 (max magnitude is at corners of joystick
-    	speed = Math.pow(Robot.oi.joystick.getMagnitude(), 3)*100.0/5.5*1.414; // same as above except Magnitude is cubed for better control at low speeds
-    	angle=Robot.oi.joystick.getThrottle()*180;  //for position PID loop
+    	speed = (-Robot.oi.joystick.getThrottle()+1)/2*100.0/5.5; 
+    	//speed = Math.pow(Robot.oi.joystick.getMagnitude(), 3)*100.0/5.5*1.414; // *(encoder counts/rev)/(gear reduction)*1.414 (max magnitude is at corners of joystick Magnitude is cubed for better control at low speeds
+    	angle=Robot.oi.joystick.getDirectionDegrees(); 
+    	
     	Robot.mMotorPID.setSetpoint(speed);
     	Robot.mMotor.setSpeed(Robot.mMotorPID.getOutput());
-    //Robot.sMotorPID.setSetpoint(speed);   //for speed control
-    	//Robot.sMotor.setSpeed(Robot.sMotorPID.getOutput());
-    	
-    	//Robot.sMotor.setSpeed(Robot.sMotorPID.getOutput()+Robot.oi.joystick.getTwist());  //simulated joystick angle input to summing junction for Blake's swerve
-    //Robot.sMotor.setSpeed(Robot.sMotorPID.getOutput()+(Robot.oi.joystick.getDirectionDegrees()/180)/5);  //simulated joystick angle input to summing junction for Blake's swerve
-    	//Robot.sMotor.setSpeed(Robot.sMotorPID.getOutput()+Robot.oi.joystick.getThrottle());  //simulated joystick angle input to summing junction for Blake's swerve
 
-    	
-    	//for position PID loop
     	Robot.sMotorPID.setSetpoint(angle);//.setSetpoint(90);
     	Robot.sMotor.setAngle(Robot.sMotorPID.getOutput());
 //

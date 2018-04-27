@@ -6,7 +6,7 @@ public class RobotPreferences {
 
 	//drive inputs
 		public static double driveP() {
-			return Preferences.getInstance().getDouble("driveP", 0.05);  //add to subsystem PID: "enable method"
+			return Preferences.getInstance().getDouble("driveP", 0.05); 
 		}
 		public static double driveI() {
 			return Preferences.getInstance().getDouble("driveI", 0.00);
@@ -28,7 +28,7 @@ public class RobotPreferences {
 		}
 	//steer inputs
 		public static double steerP() {
-			return Preferences.getInstance().getDouble("steerP", -0.005);  //add to subsystem PID: "enable method"
+			return Preferences.getInstance().getDouble("steerP", -0.005); 
 		}
 		public static double steerI() {
 			return Preferences.getInstance().getDouble("steerI", 0.004);
@@ -46,6 +46,6 @@ public class RobotPreferences {
 			return Preferences.getInstance().getDouble("steerMaxSpeed", 1.0);
 		}
 		public static double steer2SpeedDivisor() {
-			return Preferences.getInstance().getDouble("steer2SpeedDivisor", 45.0);
+			return Preferences.getInstance().getDouble("steer2SpeedDivisor", 45.0);  //usde to match speeds after steer command is completed
 		}
 	}

@@ -26,9 +26,7 @@ public class MmotorPID extends PIDSubsystem {
 
     public void enable()  {
     	this.getPIDController().setPID(RobotPreferences.driveP(), RobotPreferences.driveI(), RobotPreferences.driveD(), RobotPreferences.driveF());
-    	//this.getPIDController().setPID(0.05,  0.0,  0.005,  0.0);
     	double maxSpeed = RobotPreferences.driveMaxSpeed(); //set to <1.0 to limit max motor speed
-    	//double maxSpeed = 0.5;
     	this.setOutputRange(-maxSpeed, maxSpeed);
     	outputValid = false;
     	super.enable();
@@ -58,7 +56,6 @@ public class MmotorPID extends PIDSubsystem {
     	}
     	return output;
     	
-    	//return output+Robot.oi.joystick.getTwist();  //simulated analog encoder input to summing junction for Blake's swerve
     }
     public void setRawTolerance(double tolerance) {
     	this.tolerance = tolerance;
