@@ -29,7 +29,7 @@ public class DriveStart extends Command {
     	Robot.mMotorPID.setSetpoint(speed);
     	Robot.mMotorPID.setRawTolerance(1.0);  //(RobotPreferences.driveTolerance());
     	Robot.mMotorPID.enable();
-    	Robot.sMotorPID.setSetpoint(speed);
+    	Robot.sMotorPID.setSetpoint(angle);
     	Robot.sMotorPID.setRawTolerance(1.0);  //(RobotPreferences.driveTolerance());
     	Robot.sMotorPID.enable();
     }
@@ -38,7 +38,7 @@ public class DriveStart extends Command {
     protected void execute() {
     	//speed = Robot.oi.joystick.getMagnitude()*100.0/5.5*1.414; // *(encoder counts/rev)/(gear reduction)*1.414 (max magnitude is at corners of joystick
     	speed = Math.pow(Robot.oi.joystick.getMagnitude(), 3)*100.0/5.5*1.414; // same as above except Magnitude is cubed for better control at low speeds
-    	angle=Robot.oi.joystick.getDirectionDegrees();  //for position PID loop
+    	angle=Robot.oi.joystick.getThrottle()*180;  //for position PID loop
     	Robot.mMotorPID.setSetpoint(speed);
     	Robot.mMotor.setSpeed(Robot.mMotorPID.getOutput());
     //Robot.sMotorPID.setSetpoint(speed);   //for speed control

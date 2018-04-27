@@ -21,8 +21,8 @@ public class SmotorPID extends PIDSubsystem {
         // setSetpoint() -  Sets where the PID controller should move the system
         //                  to
         // enable() - Enables the PID controller.
-    	//super("SmotorPID",0,0,0,0);  //for speed PID loop
-    	super("RRsteerPID",0,0,0);  //for position PID loop
+    	super("SmotorPID",0,0,0,0);  //for speed PID loop
+    	//super("RRsteerPID",0,0,0);  //for position PID loop
     	this.setSetpoint(0.0);
     	getPIDController().setContinuous(true); //allows PID loop to handle abrupt change from 5 to 0 volts as encoder turns
     }
@@ -48,7 +48,7 @@ public class SmotorPID extends PIDSubsystem {
         // e.g. a sensor, like a potentiometer:
         // yourPot.getAverageVoltage() / kYourMaxVoltage;
     	//return Robot.sMotor.getEncoderRPS(); //for speed PID loop
-    	return Robot.sMotor.getPotAngle();  //for position PID loop
+    	return Robot.sMotor.getPotAngle();  //for position PID loop 
     }
 
     protected void usePIDOutput(double output) {
@@ -61,7 +61,8 @@ public class SmotorPID extends PIDSubsystem {
     	if(this.getPIDController().isEnabled() == false || outputValid == false) { // == meams "is equal to", || means "or"
     		return 0.0;
     	}
-    	return output;
+    	//output = output + 0*Robot.mMotor.getEncoderRate()/RobotPreferences.steer2SpeedDivisor(); //to keep motors spinning at same rate after steer angle error is zero
+    	return output + Robot.mMotor.getEncoderRate()/RobotPreferences.steer2SpeedDivisor();
     	
     	//return output+Robot.oi.joystick.getThrottle();  //simulated analog encoder input to summing junction for Blake's swerve
     	//return output+(Robot.sMotor.pot.getAverageVoltage()/2.5-1)/5;  //simulated analog encoder input to summing junction for Blake's swerve

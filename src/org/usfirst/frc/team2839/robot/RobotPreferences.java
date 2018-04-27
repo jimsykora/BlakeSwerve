@@ -45,4 +45,7 @@ public class RobotPreferences {
 		public static double steerMaxSpeed() {
 			return Preferences.getInstance().getDouble("steerMaxSpeed", 1.0);
 		}
+		public static double steer2SpeedDivisor() {
+			return Preferences.getInstance().getDouble("steer2SpeedDivisor", 45.0);
+		}
 	}
