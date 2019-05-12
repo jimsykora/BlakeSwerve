@@ -5,6 +5,8 @@ import org.usfirst.frc.team2839.robot.RobotPreferences;
 import org.usfirst.frc.team2839.robot.commands.DriveStart;
 
 import com.ctre.CANTalon;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Encoder;
@@ -18,14 +20,14 @@ public class Smotor extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	private CANTalon Smotor = null;  //for Peanut base which uses CAN
+	private WPI_TalonSRX Smotor = null;  //for Peanut base which uses CAN
 	Encoder sEncoder = null;
 	AnalogInput pot= null;
 	
 	public Smotor(){//added this constructor
-		Smotor = new CANTalon(RobotMap.S_MOTOR);    //for CAN
+		Smotor = new WPI_TalonSRX(RobotMap.S_MOTOR);    //for CAN
 		//sMotor.enableBrakeMode(true);
-		Smotor.enableBrakeMode(true);
+		Smotor.setNeutralMode(NeutralMode.Brake);;
 		//sMotor.setSafetyEnabled(false);//to allow a motor to run continuously without continuous repeated commands
 		Smotor.setSafetyEnabled(false);    //for CAN
 		sEncoder = new Encoder(RobotMap.S_ENCODER_CH_A,RobotMap.S_ENCODER_CH_B);

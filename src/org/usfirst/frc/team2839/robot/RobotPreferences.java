@@ -18,7 +18,7 @@ public class RobotPreferences {
 			return Preferences.getInstance().getDouble("driveF", 0.0); //works best at 0.0
 		}
 		public static double driveMaxSpeed() {
-			return Preferences.getInstance().getDouble("driveMaxSpeed", 0.5);
+			return Preferences.getInstance().getDouble("driveMaxSpeed", 0.5); //must be less than max steer speed so that steering can be done in both directions
 		}
 		public static double driveTolerance() {
 			return Preferences.getInstance().getDouble("driveTolerance", 1.0);
@@ -46,6 +46,6 @@ public class RobotPreferences {
 			return Preferences.getInstance().getDouble("steerMaxSpeed", 1.0);
 		}
 		public static double steer2SpeedDivisor() {
-			return Preferences.getInstance().getDouble("steer2SpeedDivisor", 45.0);  //usde to match speeds after steer command is completed
+			return Preferences.getInstance().getDouble("steer2SpeedDivisor", 20);  // was 4170//used to match speeds after steer command is completed
 		}
 	}

@@ -26,6 +26,10 @@ public class Telemetry extends Subsystem {
 		SmartDashboard.putNumber("Raw pot angle", Robot.sMotor.getPotAngle());
 		SmartDashboard.putNumber("Angle delta", Robot.oi.joystick.getDirectionDegrees()-Robot.sMotor.getPotAngle());
 		//SmartDashboard.putNumber("ArcTangent", Math.atan(RobotPreferences.wheelbase()/RobotPreferences.treadwidth())*57.296);
+		SmartDashboard.putNumber("NavX yaw", Robot.navXMicro.getYaw());
+		SmartDashboard.putNumber("NavX pitch", Robot.navXMicro.getPitch());
+		SmartDashboard.putNumber("NavX roll", Robot.navXMicro.getRoll());
+
 	}
 
     public void initDefaultCommand() {

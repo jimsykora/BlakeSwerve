@@ -23,7 +23,6 @@ public class SmotorPID extends PIDSubsystem {
         // enable() - Enables the PID controller.
     	super("SmotorPID",0,0,0);  //for speed PID loop
     	this.setSetpoint(0.0);
-    	getPIDController().setContinuous(true); //allows PID loop to handle abrupt change from 5 to 0 volts as encoder turns
     }
 
     public void enable()  {
@@ -31,6 +30,7 @@ public class SmotorPID extends PIDSubsystem {
     	double maxSpeed = RobotPreferences.steerMaxSpeed(); //set to <1.0 to limit max motor speed
     	this.setOutputRange(-maxSpeed, maxSpeed);
     	this.setInputRange(-180.0, 180.0);  //for position PID loop
+    	getPIDController().setContinuous(true); //allows PID loop to handle abrupt change from 5 to 0 volts as encoder turns
     	outputValid = false;
     	super.enable();
     }
@@ -58,7 +58,7 @@ public class SmotorPID extends PIDSubsystem {
     	if(this.getPIDController().isEnabled() == false || outputValid == false) { // == meams "is equal to", || means "or"
     		return 0.0;
     	}
-    	return output + Robot.mMotor.getEncoderRate()/RobotPreferences.steer2SpeedDivisor();  //to keep motors spinning at same rate after steer angle error is zero
+    	return output + (Robot.oi.joystick.getThrottle()+1) /2*100.0/5.5 /RobotPreferences.steer2SpeedDivisor();//Robot.mMotor.getEncoderRate()/RobotPreferences.steer2SpeedDivisor();  //to keep motors spinning at same rate after steer angle error is zero
     }
     public void setRawTolerance(double tolerance) {
     	this.tolerance = tolerance;

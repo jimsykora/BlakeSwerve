@@ -54,8 +54,7 @@ public class MmotorPID extends PIDSubsystem {
     	if(this.getPIDController().isEnabled() == false || outputValid == false) { // == meams "is equal to", || means "or"
     		return 0.0;
     	}
-    	return output;
-    	
+    	return output    ;//   -     Robot.mMotor.getEncoderRate()/RobotPreferences.steer2SpeedDivisor();  //to keep motors spinning at same rate after steer angle error is zero
     }
     public void setRawTolerance(double tolerance) {
     	this.tolerance = tolerance;

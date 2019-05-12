@@ -4,6 +4,8 @@ import org.usfirst.frc.team2839.robot.RobotMap;
 import org.usfirst.frc.team2839.robot.commands.DriveStart;
 
 import com.ctre.CANTalon;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -16,14 +18,14 @@ public class Mmotor extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	private CANTalon Mmotor = null;  //for Peanut base which uses CAN
+	private WPI_TalonSRX Mmotor = null;  //for Peanut base which uses CAN
 	Encoder mEncoder = null;
 	
 	public Mmotor(){//added this constructor
 		//mMotor = new VictorSP(RobotMap.M_MOTOR);//must create a constant in RobotMap
-		Mmotor = new CANTalon(RobotMap.M_MOTOR);    //for CAN
+		Mmotor = new WPI_TalonSRX(RobotMap.M_MOTOR);    //for CAN
 		//mMotor.enableBrakeMode(true);
-		Mmotor.enableBrakeMode(true);    //for CAN
+		Mmotor.setNeutralMode(NeutralMode.Brake);    //for CAN
 		//mMotor.setSafetyEnabled(false);//to allow a motor to run continuously without continuous repeated commands
 		Mmotor.setSafetyEnabled(false);//to allow a motor to run continuously without continuous repeated commands
 		mEncoder = new Encoder(RobotMap.M_ENCODER_CH_A,RobotMap.M_ENCODER_CH_B);

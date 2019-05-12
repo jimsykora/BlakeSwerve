@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2839.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team2839.robot.subsystems.Mmotor;
 import org.usfirst.frc.team2839.robot.subsystems.MmotorPID;
+import org.usfirst.frc.team2839.robot.subsystems.NavXMicro;
 import org.usfirst.frc.team2839.robot.subsystems.Smotor;
 import org.usfirst.frc.team2839.robot.subsystems.SmotorPID;
 import org.usfirst.frc.team2839.robot.subsystems.Telemetry;
@@ -27,6 +28,7 @@ public class Robot extends IterativeRobot {
 	public static MmotorPID mMotorPID;
 	public static Smotor sMotor;
 	public static SmotorPID sMotorPID;
+	public static  NavXMicro navXMicro;
 	
 	public static Telemetry telemetry; //Smart Dashboard & OI must be at the end
 	public static OI oi;
@@ -44,6 +46,8 @@ public class Robot extends IterativeRobot {
 		mMotorPID = new MmotorPID();
 		sMotor = new Smotor();
 		sMotorPID = new SmotorPID();
+		navXMicro = new NavXMicro();
+
 
 		SmartDashboard.putData("Auto mode", chooser);
 		telemetry = new Telemetry();
