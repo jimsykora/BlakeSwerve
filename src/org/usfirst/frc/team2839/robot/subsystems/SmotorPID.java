@@ -58,7 +58,7 @@ public class SmotorPID extends PIDSubsystem {
     	if(this.getPIDController().isEnabled() == false || outputValid == false) { // == meams "is equal to", || means "or"
     		return 0.0;
     	}
-    	return output + (Robot.oi.joystick.getThrottle()+1) /2*100.0/5.5 /RobotPreferences.steer2SpeedDivisor();//Robot.mMotor.getEncoderRate()/RobotPreferences.steer2SpeedDivisor();  //to keep motors spinning at same rate after steer angle error is zero
+    	return output + (Robot.oi.joystick.getThrottle()-1)/2 /RobotPreferences.steer2SpeedDivisor();//Robot.mMotor.getEncoderRate()/RobotPreferences.steer2SpeedDivisor();  //to keep motors spinning at same rate after steer angle error is zero
     }
     public void setRawTolerance(double tolerance) {
     	this.tolerance = tolerance;

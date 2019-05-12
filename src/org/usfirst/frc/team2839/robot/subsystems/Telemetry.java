@@ -20,7 +20,7 @@ public class Telemetry extends Subsystem {
 
 		SmartDashboard.putNumber("Rate delta", (Robot.mMotor.getEncoderRate()+Robot.sMotor.getEncoderRate())/100);
 		SmartDashboard.putNumber("Twist", Robot.oi.joystick.getTwist()*180);
-		SmartDashboard.putNumber("Throttle", Robot.oi.joystick.getThrottle()*180);
+		SmartDashboard.putNumber("Throttle", (Robot.oi.joystick.getThrottle()-1)/2*6250);
 		SmartDashboard.putNumber("Direction", Robot.oi.joystick.getDirectionDegrees());
 		SmartDashboard.putNumber("Magnitude", Robot.oi.joystick.getMagnitude());
 		SmartDashboard.putNumber("Raw pot angle", Robot.sMotor.getPotAngle());
