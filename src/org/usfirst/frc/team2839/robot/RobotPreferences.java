@@ -37,13 +37,13 @@ public class RobotPreferences {
 			return Preferences.getInstance().getDouble("steerD", 0.001);
 		}
 		public static double steerTolerance() {
-			return Preferences.getInstance().getDouble("steerTolerance", 2.0);
+			return Preferences.getInstance().getDouble("steerTolerance", 10.0);
 		}
 		public static double steerTargetRate() {
 			return Preferences.getInstance().getDouble("steerTargetRate", 1.0);
 		}
 		public static double steerMaxSpeed() {
-			return Preferences.getInstance().getDouble("steerMaxSpeed", 1.0);
+			return Preferences.getInstance().getDouble("steerMaxSpeed", 0.1);
 		}
 		public static double steer2SpeedDivisor() {
 			return Preferences.getInstance().getDouble("steer2SpeedDivisor", 0.67);  // was 4170//used to match speeds after steer command is completed

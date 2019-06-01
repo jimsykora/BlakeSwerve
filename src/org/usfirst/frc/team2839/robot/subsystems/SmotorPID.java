@@ -12,8 +12,9 @@ public class SmotorPID extends PIDSubsystem {
 	double output = 0.0;
 	boolean outputValid = false;
 //	int targetRate = 0;  //for speed PID loop, remove later if/when PID loop gets tuned properly. its used to delay turning off PID loop while in motion
+	
 	double targetAngle = 2.5;  //for position PID loop, remove later if/when PID loop gets tuned properly. its used to delay turning off PID loop while in motion
-	double tolerance = 0.0;
+	double tolerance = 10.0;
 	
     // Initialize your subsystem here
     public SmotorPID() {
@@ -58,7 +59,8 @@ public class SmotorPID extends PIDSubsystem {
     	if(this.getPIDController().isEnabled() == false || outputValid == false) { // == meams "is equal to", || means "or"
     		return 0.0;
     	}
-    	return output + (Robot.oi.joystick.getThrottle()-1)/2 /RobotPreferences.steer2SpeedDivisor();//Robot.mMotor.getEncoderRate()/RobotPreferences.steer2SpeedDivisor();  //to keep motors spinning at same rate after steer angle error is zero
+    	//return output + (Robot.oi.joystick.getThrottle()-1)/2 /RobotPreferences.steer2SpeedDivisor();//Robot.mMotor.getEncoderRate()/RobotPreferences.steer2SpeedDivisor();  //to keep motors spinning at same rate after steer angle error is zero
+    	return output;
     }
     public void setRawTolerance(double tolerance) {
     	this.tolerance = tolerance;

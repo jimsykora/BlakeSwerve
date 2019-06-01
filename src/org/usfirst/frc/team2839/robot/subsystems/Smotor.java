@@ -3,6 +3,7 @@ package org.usfirst.frc.team2839.robot.subsystems;
 import org.usfirst.frc.team2839.robot.RobotMap;
 import org.usfirst.frc.team2839.robot.RobotPreferences;
 import org.usfirst.frc.team2839.robot.commands.DriveStart;
+import org.usfirst.frc.team2839.robot.commands.SteerStart;
 
 import com.ctre.CANTalon;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -33,7 +34,8 @@ public class Smotor extends Subsystem {
 		sEncoder = new Encoder(RobotMap.S_ENCODER_CH_A,RobotMap.S_ENCODER_CH_B);
 		pot = new AnalogInput(RobotMap.STEER_POT);
 	}
-
+//---------------------------------------------------------------------------------------------	
+///the following are used when PID loop using digital quad encoder (not analog encoder)
 	public void setSpeed(double speed){
 		Smotor.set(speed);    //for CAN
 	}
@@ -48,19 +50,28 @@ public class Smotor extends Subsystem {
 		double cpr = 100.0*5.5; //cpr of shooter wheel (encoder counts/rev)*(gear reduction)
 		return sEncoder.getRate()/cpr;  //returns rps (rev/sec) of shooter wheel
 	}
-///the following are used when PID loop used analog encoder (not digital quadrature encoder)
+//    public void initDefaultCommand() {  //comment out these 6 lines if using analog pot instead of (speed) encoder
+//      double rps = 0.0;
+	    // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
+//    	setDefaultCommand(new DriveStart(rps));
+//  }
+	
+//-------------------------------------------------------------------------------------------
+//___________________________________________________________________________________________
+///the following are used when PID loop uses analog encoder (not digital quadrature encoder)
 	public void setAngle(double angle){
 		Smotor.set(angle);
 	}
 	public double getPotAngle(){
 		return (pot.getAverageVoltage()*72-180);
 	}
-///
-    public void initDefaultCommand() {
-        double rps = 0.0;
-		// Set the default command for a subsystem here.
+    public void initDefaultCommand() {  //comment out these 5 lines if using analog pot instead of (speed) encoder
+        // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new DriveStart(rps));
+    	setDefaultCommand(new SteerStart());
     }
+///the previous are used when PID loop used analog encoder (not digital quadrature encoder)
+//________________________________________________________________________________________
 }
 
